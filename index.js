@@ -1,12 +1,20 @@
 function locate(array, target) {
   // do work here
-  let includesArray = array.join();
+  let empArr = [];
 
-  if (includesArray.includes(target)) {
-    return true;
-  } else {
-    return false;
-  }
+  let returnArr = element => {
+    element.forEach(arr => {
+      if (typeof arr === "object") {
+        returnArr(arr);
+        return;
+      } else {
+        empArr.push(arr);
+      }
+    });
+    return empArr;
+  };
+
+  return returnArr(array).includes(target);
 }
 
 module.exports = locate;
